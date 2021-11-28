@@ -53,13 +53,9 @@ app.get("/friends/:friendsId" , (req , res) => {
     }
 })
 
-app.get("/messages" , (req , res) => {
-    res.send("<ul><li>Hello APJ kalam</li></ul>")
-})
+app.get("/messages")
 
-app.post("/messages", (req , res) => {
-    console.log("updating messages...");
-})
+app.post("/messages")
 app.listen(PORT ,() => {
     console.log(`app started on port ${PORT}`);
 })
