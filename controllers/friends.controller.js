@@ -1,3 +1,5 @@
+const model = require('../models/friends.model')
+
 function postFriends(req , res){
    
     if (!req.body.name) {
@@ -6,19 +8,19 @@ function postFriends(req , res){
 
     const newFriends = {
         name : req.body.name,
-        id : friends.length
+        id : model.length
     }
-    friends.push(newFriends)
+    model.push(newFriends)
     res.json(newFriends)
 }
 
 function getFriends(req , res){
-    res.status(200).json(friends)
+    res.status(200).json(model)
 }
 
 function getFriend(req , res){
     const quer = Number(req.params.friendsId);
-    const friend = friends[quer];
+    const friend = model[quer];
     console.log(friend);
     if(friend) {
         res.json(friend)
