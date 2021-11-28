@@ -10,11 +10,12 @@ app.use((req, res, next) => {
     const start = Date.now()
     next();
     const delta = Date.now() - start
-    console.log(`${req.url} ${req.method} ${delta}ms`);
+    console.log(`${req.url} ${req.baseUrl} ${req.method} ${delta}ms`);
 })
 
 // convert all req to json format
 
+app.use("/site" , express.static("public"))
 app.use(express.json()) 
 
 app.use("/friends", friendRouter)
