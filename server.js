@@ -2,10 +2,12 @@ const express = require('express')
 const friendRouter = require('./routes/friends.router')
 const messagesRouter = require('./routes/message.router')
 const app = express()
+const path = require('path')
 
 const PORT = 3000;
 
-
+app.set("view engine", "hbs");
+app.set("views" , path.join(__dirname,"views"))
 app.use((req, res, next) => {
     const start = Date.now()
     next();
@@ -17,6 +19,14 @@ app.use((req, res, next) => {
 
 app.use("/site" , express.static("public"))
 app.use(express.json()) 
+
+ 
+app.get("/" , (req, res) => {
+    res.render("index" , {
+        title : "Clever Man!" ,
+        caption : "Let\'s go skiing"
+    })
+})
 
 app.use("/friends", friendRouter)
 app.use("/messages", messagesRouter)
