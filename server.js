@@ -1,13 +1,20 @@
 const express = require('express')
+
 const friendRouter = require('./routes/friends.router')
 const messagesRouter = require('./routes/message.router')
+
 const app = express()
+
 const path = require('path')
 
 const PORT = 3000;
 
+// we can use this! instead of analysing where the view leaves
+// app.use("view engine" , "hbs")
+
 app.set("view engine", "hbs");
 app.set("views" , path.join(__dirname,"views"))
+
 app.use((req, res, next) => {
     const start = Date.now()
     next();
@@ -25,7 +32,7 @@ app.get("/" , (req, res) => {
     res.render("index" , {
         title : "Clever Man!" ,
         caption : "Let\'s go skiing"
-    })
+    }) 
 })
 
 app.use("/friends", friendRouter)
